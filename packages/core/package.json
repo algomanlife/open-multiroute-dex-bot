@@ -1,0 +1,45 @@
+{
+  "name": "@omdb/core",
+  "version": "2.0.0",
+  "description": "Trading engine and DEX clients for Open Multiroute DEX Bot",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch --preserveWatchOutput",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "clean": "rm -rf dist .turbo"
+  },
+  "dependencies": {
+    "@bluefin-exchange/bluefin-v2-client": "5.2.35",
+    "@dydxprotocol/v4-client-js": "^1.0.27",
+    "@ethersproject/providers": "^5.7.2",
+    "@nktkas/hyperliquid": "^0.31.0",
+    "@perp/sdk-curie": "^1.22.0",
+    "axios": "^1.7.9",
+    "big.js": "^6.2.2",
+    "decimal.js": "^10.4.3",
+    "ethers": "^5.7.2",
+    "ethers-v6": "npm:ethers@6.13.4",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/big.js": "^6.2.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

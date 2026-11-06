@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.next/
+out/
+*.tsbuildinfo
+
+# Turbo
+.turbo/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+/etc/secrets/
+
+# Database
+*.db
+*.sqlite
+prisma/migrations/dev/
+
+# Logs
+logs/
+*.log
+pino-*.log
+
+# Coverage
+coverage/
+
+# Exports (trade history CSV)
+data/exports/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

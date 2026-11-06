@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --omdb-bg: #020617;
+  --omdb-raised: #0f172a;
+  --omdb-accent: #22d3ee;
+}
+
+body {
+  background-color: var(--omdb-bg);
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+}

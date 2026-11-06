@@ -1,0 +1,118 @@
+// Open Multiroute DEX Bot — Prisma schema (PostgreSQL)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String                @id @default(cuid())
+  walletAddress String               @unique
+  displayName  String?
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+
+  sessions     Session[]
+  credentials  ExchangeCredential[]
+  trades       Trade[]
+  positions    Position[]
+  alerts       Alert[]
+  strategies   Strategy[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model ExchangeCredential {
+  id           String   @id @default(cuid())
+  userId       String
+  exchange     String
+  label        String   @default("default")
+  encryptedKey String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, exchange, label])
+}
+
+model Trade {
+  id        String   @id @default(cuid())
+  userId    String?
+  exchange  String
+  market    String
+  side      String
+  size      Float
+  price     Float
+  orderId   String?
+  strategy  String
+  pnl       Float?
+  status    String   @default("FILLED")
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@index([exchange, createdAt])
+}
+
+model Position {
+  id         String    @id @default(cuid())
+  userId     String?
+  exchange   String
+  market     String
+  side       String
+  size       Float
+  entryPrice Float
+  strategy   String?
+  status     String    @default("OPEN")
+  openedAt   DateTime  @default(now())
+  closedAt   DateTime?
+  updatedAt  DateTime  @updatedAt
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@unique([userId, exchange, market, strategy])
+}
+
+model Alert {
+  id        String   @id @default(cuid())
+  userId    String?
+  exchange  String
+  strategy  String
+  payload   Json
+  accepted  Boolean
+  reason    String?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([createdAt])
+}
+
+model Strategy {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  settings  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, name])
+}

@@ -1,0 +1,66 @@
+# Open Multiroute DEX Bot — production stack (api + web + postgres)
+
+name: omdb
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-omdb}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-omdb}
+      POSTGRES_DB: ${POSTGRES_DB:-omdb}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-omdb}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [omdb]
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-omdb}:${POSTGRES_PASSWORD:-omdb}@postgres:5432/${POSTGRES_DB:-omdb}?schema=public
+      API_PORT: 3000
+      API_HOST: 0.0.0.0
+      WEBHOOK_PASSPHRASE: ${WEBHOOK_PASSPHRASE:?set WEBHOOK_PASSPHRASE in .env}
+      CREDENTIALS_ENCRYPTION_KEY: ${CREDENTIALS_ENCRYPTION_KEY:-}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3001}
+      DYDX_V4_PRIVATE_KEY: ${DYDX_V4_PRIVATE_KEY:-}
+      DYDX_V4_MNEMONIC: ${DYDX_V4_MNEMONIC:-}
+      HYPERLIQUID_PRIVATE_KEY: ${HYPERLIQUID_PRIVATE_KEY:-}
+      GMX_PRIVATE_KEY: ${GMX_PRIVATE_KEY:-}
+      GMX_RPC_URL: ${GMX_RPC_URL:-}
+      PERP_PRIVATE_KEY: ${PERP_PRIVATE_KEY:-}
+      PERP_RPC_URL: ${PERP_RPC_URL:-}
+      BLUEFIN_MNEMONIC: ${BLUEFIN_MNEMONIC:-}
+    ports:
+      - "3000:3000"
+    networks: [omdb]
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3000}
+    restart: unless-stopped
+    depends_on: [api]
+    ports:
+      - "3001:3001"
+    networks: [omdb]
+
+volumes:
+  pgdata:
+
+networks:
+  omdb:

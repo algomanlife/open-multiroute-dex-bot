@@ -1,0 +1,32 @@
+{
+  "name": "open-multiroute-dex-bot",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A comprehensive open-source trading bot that routes TradingView alerts to multiple DEXes with a modern dashboard",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "db:migrate": "pnpm --filter @omdb/api db:migrate",
+    "db:generate": "pnpm --filter @omdb/api db:generate",
+    "db:studio": "pnpm --filter @omdb/api db:studio",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,yml,yaml}\"",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3"
+  }
+}

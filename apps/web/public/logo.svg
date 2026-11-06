@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Open Multiroute DEX Bot logo">
+  <defs>
+    <linearGradient id="omdb-g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#omdb-g)"/>
+  <!-- source node -->
+  <circle cx="18" cy="32" r="5" fill="#ffffff"/>
+  <!-- routes -->
+  <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.95">
+    <path d="M23 30 C31 22 39 18 45 14"/>
+    <path d="M23 32 L45 32"/>
+    <path d="M23 34 C31 42 39 46 45 50"/>
+  </g>
+  <!-- destination nodes -->
+  <circle cx="47" cy="13" r="4" fill="#ffffff"/>
+  <circle cx="47" cy="32" r="4" fill="#ffffff"/>
+  <circle cx="47" cy="51" r="4" fill="#ffffff"/>
+</svg>
