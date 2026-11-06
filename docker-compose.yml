@@ -43,6 +43,13 @@ services:
       PERP_PRIVATE_KEY: ${PERP_PRIVATE_KEY:-}
       PERP_RPC_URL: ${PERP_RPC_URL:-}
       BLUEFIN_MNEMONIC: ${BLUEFIN_MNEMONIC:-}
+      GAINS_AGENT_KEY: ${GAINS_AGENT_KEY:-}
+      GAINS_MASTER_KEY: ${GAINS_MASTER_KEY:-}
+      GAINS_RPC_URL: ${GAINS_RPC_URL:-https://sepolia-rollup.arbitrum.io/rpc}
+      GAINS_CHAIN: ${GAINS_CHAIN:-arbitrum-sepolia}
+      GAINS_LEVERAGE: ${GAINS_LEVERAGE:-5}
+      GAINS_COLLATERAL: ${GAINS_COLLATERAL:-USDC}
+      GAINS_SLIPPAGE: ${GAINS_SLIPPAGE:-1}
     ports:
       - "3000:3000"
     networks: [omdb]

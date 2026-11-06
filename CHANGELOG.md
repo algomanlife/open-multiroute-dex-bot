@@ -6,6 +6,21 @@ and the project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+### Added
+
+- **Gains Network** DEX client (`gains`) via the official `@gainstrade/api`
+  SDK — agent-key auth, market orders with oracle fills, position queries;
+  defaults to the demo/testnet chain (`arbitrum-sepolia`, demo.gains.trade).
+- **Chart & Signals** dashboard page: embedded Vela Charts workspace
+  (@luxalgo/vela) with live Binance data; script alerts carrying JSON
+  payloads route to the engine exactly like TradingView webhooks; one-shot
+  price-crossing watcher; manual BUY/SELL signal triggers.
+- `POST /api/signals` (SIWE-authenticated) — internal signal ingestion for
+  dashboard charts (passphrase injected server-side).
+- `GET /api/gains/status`, `GET /api/gains/positions`,
+  `POST /api/gains/test` — Gains demo/test-mode endpoints that place a small
+  order and return the resulting position for pipeline verification.
+
 ## [2.0.0] — 2026-11-05
 
 Complete rebrand, modernization and rebuild of

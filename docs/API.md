@@ -62,6 +62,20 @@ DELETE /api/exchanges/:exchange/:label      → {deleted: n}
 `POST` requires `CREDENTIALS_ENCRYPTION_KEY` on the server; secrets are
 AES-256-GCM encrypted and never returned.
 
+## Dashboard signals & Gains test routes
+
+```
+POST /api/signals           (auth) — Vela chart signals; same validation and
+                                     routing as the webhook, no passphrase
+GET  /api/gains/status       (auth) — {configured, chain, isDemoChain, agentAddress}
+GET  /api/gains/positions    (auth) — live Gains positions of the agent account
+POST /api/gains/test         (auth) — place a small test market order
+       {market?, side?, size?, leverage?, strategy?, closeOnly?}
+```
+
+The Gains test route targets the **demo/testnet chain** (`arbitrum-sepolia`,
+the environment behind demo.gains.trade) unless `GAINS_CHAIN=arbitrum`.
+
 ## WebSocket
 
 `GET /ws` — server pushes JSON frames:

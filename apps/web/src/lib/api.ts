@@ -118,3 +118,35 @@ export type Stats = {
   openPositions: number;
   alertsToday: number;
 };
+
+// ── Chart & Signals / Gains test types ──────────────────────────────────────
+
+export type SignalResult = {
+  accepted: boolean;
+  reason?: string;
+  simulated?: boolean;
+};
+
+export type GainsStatus = {
+  configured: boolean;
+  chain: string;
+  isDemoChain: boolean;
+  agentAddress: string | null;
+};
+
+export type GainsPosition = {
+  id: string;
+  market: string;
+  side: "long" | "short";
+  size: string;
+  leverage: string;
+  openPrice: string;
+  status: string;
+};
+
+export type GainsTestResult = {
+  accepted: boolean;
+  chain: string;
+  order: unknown;
+  positions: GainsPosition[];
+};

@@ -9,6 +9,13 @@ vi.mock("@bluefin-exchange/bluefin-v2-client", () => ({
   ORDER_TYPE: { MARKET: "MARKET" }
 }));
 
+// The Gains SDK imports viem ESM at module load; registry tests only need
+// the class symbol, so mock the module.
+vi.mock("@gainstrade/api", () => ({
+  GainsClient: class MockGainsClient {},
+  viemSender: () => ({})
+}));
+
 import { DexRegistry } from "./registry.js";
 
 describe("DexRegistry", () => {
@@ -20,6 +27,7 @@ describe("DexRegistry", () => {
         "dydx",
         "perpetual",
         "gmx",
+        "gains",
         "bluefin",
         "hyperliquid"
       ])

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@omdb/ui"],
+  transpilePackages: ["@omdb/ui", "@luxalgo/vela", "@luxalgo/vela-ui"],
   output: "standalone",
   webpack: (config, { webpack }) => {
     // @coinbase/cdp-sdk (optional deep dependency of wagmi's coinbase

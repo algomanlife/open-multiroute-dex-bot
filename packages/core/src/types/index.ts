@@ -13,6 +13,7 @@ export type DexKey =
   | 'dydx'
   | 'perpetual'
   | 'gmx'
+  | 'gains'
   | 'bluefin'
   | 'hyperliquid';
 

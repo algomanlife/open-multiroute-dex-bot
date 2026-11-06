@@ -6,7 +6,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ExchangeCard } from "@omdb/ui";
 import { get, post, del, type ExchangeList } from "@/lib/api";
 
-const EXCHANGES = ["dydxv4", "perpetual", "gmx", "bluefin", "hyperliquid"] as const;
+const EXCHANGES = ["gains", "dydxv4", "perpetual", "gmx", "bluefin", "hyperliquid"] as const;
 
 export function ExchangeManager() {
   const queryClient = useQueryClient();

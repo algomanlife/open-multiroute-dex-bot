@@ -5,6 +5,13 @@ export { alertSchema, SUPPORTED_EXCHANGES, validateAlert } from "./trading/alert
 export { TradingEngine } from "./trading/engine.js";
 export { DexRegistry } from "./clients/registry.js";
 export {
+  GainsClient,
+  gainsDefaultChain,
+  gainsRestBase,
+  toGainsMarket
+} from "./clients/gains/gainsClient.js";
+export type { GainsPosition } from "./clients/gains/gainsClient.js";
+export {
   AbstractDexClient,
   type OrderFilledEvent
 } from "./clients/base.js";

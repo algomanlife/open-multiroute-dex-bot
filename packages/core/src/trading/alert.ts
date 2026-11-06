@@ -12,6 +12,7 @@ export const SUPPORTED_EXCHANGES: readonly DexKey[] = [
   "dydx",
   "perpetual",
   "gmx",
+  "gains",
   "bluefin",
   "hyperliquid"
 ] as const;

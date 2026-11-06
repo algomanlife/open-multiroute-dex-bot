@@ -27,6 +27,9 @@
 - 🛡️ **Credentials at rest encrypted** — AES-256-GCM, keys never leave the server
 - 🔄 **Realtime** — WebSocket push for trades, alerts and positions
 - 🧪 **Type-safe end-to-end** — strict TypeScript, Zod validation, tRPC + OpenAPI
+- 📈 **Built-in charting** — Vela Charts embedded in the dashboard; script alerts
+  and price levels route straight to the engine, and a Gains demo/test panel
+  verifies order placement before going live
 - 🐳 **One-command deploy** — docker compose up and you're running
 - 🧱 **Monorepo** — Turborepo with shared `@omdb/core` engine and `@omdb/ui` components
 
@@ -39,6 +42,7 @@
 | GMX v2              | Arbitrum        | `gmx`                  | ✅     |
 | Perpetual Protocol  | Optimism        | `perpetual`            | ✅     |
 | Bluefin             | Sui mainnet     | `bluefin`              | ✅     |
+| Gains Network       | Arbitrum (+ testnet demo) | `gains`     | ✅     |
 
 ## 🏗️ Architecture
 

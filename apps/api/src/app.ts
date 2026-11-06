@@ -10,6 +10,8 @@ import { fastifyTRPCPlugin } from "@trpc/server/adapters/fastify";
 import { corsOrigins, loadEnv } from "./config.js";
 import { authRoutes } from "./routes/auth.js";
 import { webhookRoutes } from "./routes/webhook.js";
+import { signalRoutes } from "./routes/signals.js";
+import { gainsRoutes } from "./routes/gains.js";
 import { exchangeRoutes } from "./routes/exchanges.js";
 import { dataRoutes } from "./routes/data.js";
 import { broadcastHub } from "./lib/ws.js";
@@ -67,6 +69,8 @@ export async function buildApp() {
 
   await app.register(authRoutes);
   await app.register(webhookRoutes);
+  await app.register(signalRoutes);
+  await app.register(gainsRoutes);
   await app.register(exchangeRoutes);
   await app.register(dataRoutes);
 

@@ -7,6 +7,7 @@ import { AbstractDexClient } from "./base.js";
 import { BluefinDexClient } from "./bluefin/bluefinClient.js";
 import { DydxV4Client } from "./dydx_v4/dydxV4Client.js";
 import { GmxClient } from "./gmx/gmxClient.js";
+import { GainsClient } from "./gains/gainsClient.js";
 import { PerpClient } from "./perp/perpClient.js";
 import { HyperliquidClient } from "./hyperliquid/hyperliquidClient.js";
 
@@ -17,6 +18,7 @@ const clientFactories: Record<string, ClientFactory> = {
   dydx: () => new DydxV4Client(),
   perpetual: () => new PerpClient(),
   gmx: () => new GmxClient(),
+  gains: () => new GainsClient(),
   bluefin: () => new BluefinDexClient(),
   hyperliquid: () => new HyperliquidClient()
 };
